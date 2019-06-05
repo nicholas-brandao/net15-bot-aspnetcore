@@ -14,6 +14,7 @@ namespace SimpleBotCore.Controllers
     {
         SimpleBotUser _bot = new SimpleBotUser();
 
+
         public MessagesController(SimpleBotUser bot)
         {
             this._bot = bot;
