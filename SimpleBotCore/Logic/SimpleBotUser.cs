@@ -12,17 +12,13 @@ namespace SimpleBotCore.Logic
     {
 
         private static MongoClient conn = new MongoClient("mongodb://localhost:27017");
-
         private static IMongoDatabase db = conn.GetDatabase("15net");
 
         public string Reply(SimpleMessage message)
         {
-
             Salvar(message);
-
             return $"{message.User} disse '{message.Text}' ({RetornaNumeroMensagensEnviadas(message.Id)} mensagens enviadas)";
         }
-
 
         void Salvar(SimpleMessage message)
         {
