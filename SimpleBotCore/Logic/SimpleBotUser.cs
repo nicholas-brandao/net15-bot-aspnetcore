@@ -11,48 +11,48 @@ namespace SimpleBotCore.Logic
     public class SimpleBotUser
     {
 
-        private static MongoClient conn = new MongoClient("mongodb://localhost:27017");
-        private static IMongoDatabase db = conn.GetDatabase("15net");
+        //private static MongoClient conn = new MongoClient("mongodb://localhost:27017");
+        //private static IMongoDatabase db = conn.GetDatabase("15net");
 
-        public string Reply(SimpleMessage message)
-        {
-            Salvar(message);
-            return $"{message.User} disse '{message.Text}' ({RetornaNumeroMensagensEnviadas(message.Id)} mensagens enviadas)";
-        }
+        //public string Reply(SimpleMessage message)
+        //{
+        //    Salvar(message);
+        //    return $"{message.User} disse '{message.Text}' ({RetornaNumeroMensagensEnviadas(message.Id)} mensagens enviadas)";
+        //}
 
-        void Salvar(SimpleMessage message)
-        {
-            #region Desafio 1
-            var col = db.GetCollection<BsonDocument>("colMensagens");
+        //void Salvar(SimpleMessage message)
+        //{
+        //    #region Desafio 1
+        //    var col = db.GetCollection<BsonDocument>("colMensagens");
 
-            var doc = new BsonDocument() {
-                                           { "Id", message.Id },
-                                           { "Usuario", message.User },
-                                           { "Mensagem", message.Text }
-                                         };
-            col.InsertOne(doc);
-            #endregion
+        //    var doc = new BsonDocument() {
+        //                                   { "Id", message.Id },
+        //                                   { "Usuario", message.User },
+        //                                   { "Mensagem", message.Text }
+        //                                 };
+        //    col.InsertOne(doc);
+        //    #endregion
 
-            #region Desafio 2
-            var colContMensagensEnviadas = db.GetCollection<BsonDocument>("colMensagensEnviadas");
+        //    #region Desafio 2
+        //    var colContMensagensEnviadas = db.GetCollection<BsonDocument>("colMensagensEnviadas");
 
-            var cont = colContMensagensEnviadas.Find(new BsonDocument() {
-                                                                          { "Id", message.Id }
-                                                                         }).ToList();
+        //    var cont = colContMensagensEnviadas.Find(new BsonDocument() {
+        //                                                                  { "Id", message.Id }
+        //                                                                 }).ToList();
 
-            var docContMensagem = new BsonDocument() {
-                                           { "Id", message.Id },
-                                           { "Cont", cont.Count+1 }
-                                         };
-            colContMensagensEnviadas.InsertOne(docContMensagem);
-            #endregion
-        }
+        //    var docContMensagem = new BsonDocument() {
+        //                                   { "Id", message.Id },
+        //                                   { "Cont", cont.Count+1 }
+        //                                 };
+        //    colContMensagensEnviadas.InsertOne(docContMensagem);
+        //    #endregion
+        //}
 
-        private string RetornaNumeroMensagensEnviadas(string idUsuario)
-        {
-            return db.GetCollection<BsonDocument>("colMensagensEnviadas").Find(new BsonDocument() {
-                                                                          { "Id", idUsuario }
-                                                                         }).ToList().Count().ToString();
-        }
+        //private string RetornaNumeroMensagensEnviadas(string idUsuario)
+        //{
+        //    return db.GetCollection<BsonDocument>("colMensagensEnviadas").Find(new BsonDocument() {
+        //                                                                  { "Id", idUsuario }
+        //                                                                 }).ToList().Count().ToString();
+        //}
     }
 }

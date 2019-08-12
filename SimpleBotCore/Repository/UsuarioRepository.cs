@@ -43,5 +43,5 @@ namespace SimpleBotCore.Repository
             _usuarios.DeleteOne(x => x.Id == id);
     }
 
-}
+
 }

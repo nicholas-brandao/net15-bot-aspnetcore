@@ -46,11 +46,11 @@ namespace SimpleBotCore.Controllers
             string userFromId = activity.From.Id;
             string userFromName = activity.From.Name;
 
-            var message = new SimpleMessage(userFromId, userFromName, text);
+            //var message = new SimpleMessage(userFromId, userFromName, text);
 
-            string response = _bot.Reply(message);
+            //string response = _bot.Reply(message);
 
-            await ReplyUserAsync(activity, response);
+            //await ReplyUserAsync(activity, response);
         }
 
         // Responde mensagens usando o Bot Framework Connector
