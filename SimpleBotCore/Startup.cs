@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SimpleBotCore.Logic;
+using SimpleBotCore.Model;
 
 namespace SimpleBotCore
 {
@@ -17,7 +18,6 @@ namespace SimpleBotCore
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-
         }
 
         public IConfiguration Configuration { get; }
@@ -25,7 +25,15 @@ namespace SimpleBotCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<SimpleBotUser>();
+            services.Configure<UsuarioDatabaseSettings>(
+            Configuration.GetSection(nameof(UsuarioDatabaseSettings)));
+
+            services.AddSingleton<IUsuariostoreDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<UsuarioDatabaseSettings>>().Value);
+
+            services.AddSingleton<IUsuarioService, UsuarioService>();
+            services.AddSingleton<IUsuarioRepository, UsuarioRepository>();
+            //services.AddSingleton<SimpleBotUser>();
             services.AddMvc();
         }
 

@@ -17,9 +17,11 @@ namespace SimpleBotCore.Controllers
 
 
         public static int contador = 1;
-        public MessagesController(SimpleBotUser bot)
+        private readonly IUsuarioService _usuarioService;
+
+        public MessagesController(IUsuarioService usuarioService)
         {
-            this._bot = bot;
+            _usuarioService = usuarioService;
         }
 
         [HttpGet]
@@ -53,7 +55,7 @@ namespace SimpleBotCore.Controllers
             string response = _usuarioService.Create(usuario, contador);
             contador++;
 
-            //await ReplyUserAsync(activity, response);
+            await ReplyUserAsync(activity, response);
         }
 
         // Responde mensagens usando o Bot Framework Connector
