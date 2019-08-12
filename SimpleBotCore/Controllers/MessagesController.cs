@@ -7,6 +7,7 @@ using Microsoft.Bot.Connector;
 using Microsoft.Bot.Schema;
 using SimpleBotCore.Logic;
 using SimpleBotCore.Model;
+using SimpleBotCore.Services;
 
 namespace SimpleBotCore.Controllers
 {

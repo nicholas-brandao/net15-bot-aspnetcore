@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SimpleBotCore.Repository
 {
-    public class UsuarioRepository : IRepository<Usuario>
+    public class UsuarioRepository : IUsuarioRepository
     {
         private readonly IMongoCollection<Usuario> _usuarios;
 

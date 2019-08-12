@@ -10,6 +10,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SimpleBotCore.Logic;
 using SimpleBotCore.Model;
+using SimpleBotCore.Repository;
+using SimpleBotCore.Services;
 
 namespace SimpleBotCore
 {
