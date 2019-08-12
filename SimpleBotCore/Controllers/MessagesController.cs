@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Bot.Connector;
 using Microsoft.Bot.Schema;
 using SimpleBotCore.Logic;
+using SimpleBotCore.Model;
 
 namespace SimpleBotCore.Controllers
 {
@@ -15,6 +16,7 @@ namespace SimpleBotCore.Controllers
         SimpleBotUser _bot = new SimpleBotUser();
 
 
+        public static int contador = 1;
         public MessagesController(SimpleBotUser bot)
         {
             this._bot = bot;
@@ -46,9 +48,10 @@ namespace SimpleBotCore.Controllers
             string userFromId = activity.From.Id;
             string userFromName = activity.From.Name;
 
-            //var message = new SimpleMessage(userFromId, userFromName, text);
+            Usuario usuario = new Usuario(userFromId, userFromName, text);
 
-            //string response = _bot.Reply(message);
+            string response = _usuarioService.Create(usuario, contador);
+            contador++;
 
             //await ReplyUserAsync(activity, response);
         }
