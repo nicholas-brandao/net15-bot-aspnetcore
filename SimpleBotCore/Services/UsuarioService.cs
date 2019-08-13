@@ -1,17 +1,17 @@
-﻿using SimpleBotCore.Model;
-using SimpleBotCore.Repository;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SimpleBotCore.Model;
+using SimpleBotCore.Repository;
 
 namespace SimpleBotCore.Services
 {
     public class UsuarioService : IUsuarioService
     {
-        private readonly UsuarioRepository _usuarioRepository;
+        private readonly IUsuarioRepository _usuarioRepository;
 
-        public UsuarioService(UsuarioRepository usuarioRepository) => _usuarioRepository = usuarioRepository;
+        public UsuarioService(IUsuarioRepository usuarioRepository) => _usuarioRepository = usuarioRepository;
 
         public List<Usuario> Get() => _usuarioRepository.Get();
 

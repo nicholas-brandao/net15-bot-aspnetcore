@@ -14,13 +14,9 @@ namespace SimpleBotCore.Controllers
     [Route("api/[controller]")]
     public class MessagesController : Controller
     {
-        SimpleBotUser _bot = new SimpleBotUser();
-
-
-        public static int contador = 1;
         private readonly IUsuarioService _usuarioService;
-
-        public MessagesController(UsuarioService usuarioService)
+        public static int contador = 1;
+        public MessagesController(IUsuarioService usuarioService)
         {
             _usuarioService = usuarioService;
         }
@@ -51,11 +47,14 @@ namespace SimpleBotCore.Controllers
             string userFromId = activity.From.Id;
             string userFromName = activity.From.Name;
 
-            Usuario usuario = new Usuario(userFromId, userFromName, text);
+            Usuario usuario = new Usuario
+            {
+                Username = userFromName,
+                Text = text
+            };
 
             string response = _usuarioService.Create(usuario, contador);
             contador++;
-
             await ReplyUserAsync(activity, response);
         }
 

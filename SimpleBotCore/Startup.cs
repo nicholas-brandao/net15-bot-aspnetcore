@@ -33,8 +33,8 @@ namespace SimpleBotCore
             services.AddSingleton<IUsuariostoreDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<UsuarioDatabaseSettings>>().Value);
 
-            services.AddTransient<IUsuarioService, UsuarioService>();
-            services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+            services.AddSingleton<IUsuarioService, UsuarioService>();
+            services.AddSingleton<IUsuarioRepository, UsuarioRepository>();
             //services.AddSingleton<SimpleBotUser>();
             services.AddMvc();
         }

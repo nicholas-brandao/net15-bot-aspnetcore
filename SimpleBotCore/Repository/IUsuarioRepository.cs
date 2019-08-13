@@ -14,5 +14,6 @@ namespace SimpleBotCore.Repository
         void Update(string id, Usuario usuarioIn);
         void Remove(Usuario usuarioIn);
         void Remove(string id);
+
     }
 }
