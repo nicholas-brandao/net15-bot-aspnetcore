@@ -20,7 +20,7 @@ namespace SimpleBotCore.Controllers
         public static int contador = 1;
         private readonly IUsuarioService _usuarioService;
 
-        public MessagesController(IUsuarioService usuarioService)
+        public MessagesController(UsuarioService usuarioService)
         {
             _usuarioService = usuarioService;
         }
